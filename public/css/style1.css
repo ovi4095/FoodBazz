@@ -1,0 +1,315 @@
+body{
+	margin: 0%;
+	padding: 0%;
+}
+.headerStyle{
+	background:  #990000;
+	font-family: 'Raleway', sans-serif;
+;
+}
+.position{
+	color: #FC2B0A;
+	font-size: 60px;margin-bottom: 100px;font-family:Century Gothic;	
+
+}
+.position1{
+	color: #FC2B0A;
+	font-size: 60px; font-family:Century Gothic; ;	
+
+}
+.position2{
+	color: #FC2B0A;
+	margin-bottom:100px;font-size: 24px;font-family: Century Gothic; text-align: left;margin-left: 300px;
+}
+.position3{
+	color: #FC2B0A;
+	margin-top: 50px;
+	font-size: 24px;font-family: Century Gothic; text-align: left;margin-left: 300px;
+}
+.position4{
+	color: #FC2B0A;
+	font-size: 60px;margin-bottom: 80px;font-family:Century Gothic;	
+
+}
+.maph{
+	color: black;
+	font-size: 40px;font-family:Century Gothic;	
+	margin-top: 50px;
+	margin-left: 15px;
+	text-align: center;
+}
+.mbtn{
+	
+	float: center;
+	margin-top: 100px;
+	
+}
+
+.map{
+	margin:0px;
+	padding: 0px;
+}
+.mapposition{
+	margin:0px;
+	padding: 0px;
+	width: 100%;
+	height: 620px;
+	border: 0px;
+}
+.showMap{
+	 width: 250px; margin-top: 50px; font-size: 20px;
+	 margin-left: 42.5%;
+
+}
+.hideMap{
+	margin-left: 45%; width: 200px;
+}
+.mappos{
+	margin-top: 50px;
+}
+.cardh{
+	color: black;
+	font-size: 50px;font-family:Century Gothic;	
+	
+	margin-left: 15px;
+	text-align: center;
+}
+.regh{
+	color: black;
+	font-size: 70px;font-family:Century Gothic;	
+	margin-top: 150px;
+	margin-left: 15px;
+	text-align: center;
+}
+.reg{
+	text-align: center;
+	margin-top: 20px;
+	width: 300px;
+	border-radius: 25%;
+}
+/*.footer{
+			width: 100%;
+			height: 10%;
+			background: #868E96;
+		}
+		.b1{
+			width: 120px;
+			height: 50px;
+			border-radius: 10%;
+		}
+		.b2{
+			width: 120px;
+			height: 50px;
+			float: right;
+			border-radius: 10%;
+			background: red;
+			
+		}
+		.bp1{
+			float: right;
+		
+		}
+		.bp2{
+			margin-left: 30px;
+		}
+		.propic{
+			width: 180px;
+			height: 180px;
+		}*/
+		.cardContainar{
+			margin-top: 300px;
+		}
+		
+		.card1{
+			margin-top: 10px;
+		}
+		.card2{
+		
+		}
+		.card3{
+			
+		}
+		.card4{
+			
+		}
+		.card5{
+			margin-top: 50px;
+		}
+		.card6{
+			margin-top: 50px;
+		}
+
+.resttitel{
+	color: black;
+	font-size: 50px;
+	font-family:Century Gothic;	
+	margin-left: 15px;
+    text-align: center;
+    margin-top: 100px;
+    margin-right: 100px;
+}
+.rating{
+	float: right;
+}
+.ratingh{
+	color: black;
+	font-size: 20px;
+	font-family:Century Gothic;
+	
+}
+.checked {
+    color: orange;
+}
+
+.cont1{
+	width: 2400px;
+	border-radius: 12%;
+	margin-left: 150px;
+	margin-top: 30px;
+}
+.cont1:before,
+.cont1:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.cont1 .column {
+  width: 50%;
+  -webkti-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+}
+.cont1 .column .demo-title {
+  margin: 0 0 15px;
+  color: #666666;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.cont1 .info {
+  width: 300px;
+  margin: 50px auto;
+  text-align: center;
+}
+.cont1 .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+.cont1 .info span {
+  color: #666666;
+  font-size: 12px;
+}
+.cont1 .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.cont1 .info span .fa {
+  color: #e74c3c;
+}
+.galley{
+	margin: 10px 50px;
+	margin-left: 200px;
+}
+.galley img{
+	width: 320px;
+	padding: 50px;
+	margin-top: 5px;
+	filter: grayscale(100%);
+	transition: 1s;
+	border: 5px solid green;
+
+}
+.galley img:hover{
+	filter: grayscale(0%);
+	transform: scale(1.1);
+}
+
+.reviw{
+	color: black;
+	font-size: 40px;font-family:Century Gothic;	
+	margin-top: 50px;
+	margin-left: 17%;
+	text-align: left;
+}
+.showgl{
+	width: 250px; margin-top: 20px; font-size: 20px;
+	 margin-left: 17%;
+}
+.hidegl{
+		 width: 250px;
+		margin-top: 20px;
+		 margin-left: 5%;
+}
+.aheader{
+	color: black;
+	font-size: 60px;font-family:Century Gothic;	
+	margin-top: 50px;
+	text-align: center;
+}
+.time{
+	color: black;
+	font-size: 40px;font-family:Century Gothic;	
+	margin-top: 50px;
+	text-align: left;
+}
+
+.t1{
+	color: green;
+	font-size: 20px;font-family:Century Gothic;
+
+	margin-left: 20px;
+	margin-top: 10px;
+}
+.tt1{
+	color: black bold;
+	margin-left: 20px;
+	margin-top: 10px;
+	font-size: 15px;font-family:Century Gothic;
+}
+.mmma{
+	width: 480px;
+	margin-top: 10px;
+
+}
+.rating{
+	color: black;
+	font-size: 20px;
+	font-family:Century Gothic;
+	margin-left: 1.5%;
+
+}
+.star1{
+	margin-left: 150px;
+	margin-top: 2px;
+}
+.star2{
+	margin-left: 130px;
+	margin-top: 2px;
+}.star3{
+	margin-left: 143px;
+	margin-top: 2px;
+}
+.star4{
+	margin-left: 80px;
+	margin-top: 2px;
+}
+.rate{
+	color: black;
+	font-size: 40px;font-family:Century Gothic;	
+	margin-top: 50px;
+	text-align: left;
+}
+#phn{
+	color: black;
+	font-size: 20px;
+	font-family:Century Gothic;
+	
+}
+.btnclr{
+	background: #990000;
+	color: #ffffff;
+}

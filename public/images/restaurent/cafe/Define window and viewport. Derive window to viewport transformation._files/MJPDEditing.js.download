@@ -1,0 +1,31 @@
+"use strict";function MJPD(){this.Editing=(function(){var ready=false;var pending=false;var preview=null;var inline="$";var blocks,start,end,last,braces;var math;var HUB=MathJax.Hub;HUB.Queue(function(){ready=true;HUB.processUpdateTime=50;HUB.Config({"HTML-CSS":{EqnChunk:10,EqnChunkFactor:1},SVG:{EqnChunk:10,EqnChunkFactor:1}});});var SPLIT=/(\$\$?|\\(?:begin|end)\{[a-z]*\*?\}|\\[\\{}$]|[{}]|(?:\n\s*)+|@@\d+@@)/i;function processMath(i,j,preProcess){var block=blocks.slice(i,j+ 1).join("").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");if(HUB.Browser.isMSIE){block=block.replace(/(%[^\n]*)\n/g,"$1<br/>\n")}
+while(j>i){blocks[j]="";j--;}
+blocks[i]="@@"+ math.length+"@@";if(preProcess)
+block=preProcess(block);math.push(block);start=end=last=null;}
+var capturingStringSplit;if("aba".split(/(b)/).length===3){capturingStringSplit=function(str,regex){return str.split(regex)}}
+else{capturingStringSplit=function(str,regex){var result=[],match;if(!regex.global){var source=regex.toString(),flags="";source=source.replace(/^\/(.*)\/([im]*)$/,function(wholematch,re,fl){flags=fl;return re;});regex=new RegExp(source,flags+"g");}
+regex.lastIndex=0;var lastPos=0;while(match=regex.exec(str))
+{result.push(str.substring(lastPos,match.index));result.push.apply(result,match.slice(1));lastPos=match.index+ match[0].length;}
+result.push(str.substring(lastPos));return result;}}
+function removeMath(text){start=end=last=null;math=[];var hasCodeSpans=/`/.test(text),deTilde;if(hasCodeSpans){text=text.replace(/~/g,"~T").replace(/(^|[^\\`])(`+)(?!`)([^\n]*?[^`\n])\2(?!`)/gm,function(wholematch){return wholematch.replace(/\$/g,"~D");});deTilde=function(text){return text.replace(/~([TD])/g,function(wholematch,character){return{T:"~",D:"$"}[character];})};}else{deTilde=function(text){return text;};}
+blocks=capturingStringSplit(text.replace(/\r\n?/g,"\n"),SPLIT);for(var i=1,m=blocks.length;i<m;i+=2){var block=blocks[i];if(block.charAt(0)==="@"){blocks[i]="@@"+ math.length+"@@";math.push(block);}
+else if(start){if(block===end){if(braces){last=i}
+else{processMath(start,i,deTilde)}}
+else if(block.match(/\n.*\n/)){if(last){i=last;processMath(start,i,deTilde)}
+start=end=last=null;braces=0;}
+else if(block==="{"){braces++}
+else if(block==="}"&&braces){braces--}}
+else{if(block===inline||block==="$$"){start=i;end=block;braces=0;}
+else if(block.substr(1,5)==="begin"){start=i;end="\\end"+ block.substr(6);braces=0;}}}
+if(last){processMath(start,last,deTilde)}
+return deTilde(blocks.join(""));}
+function replaceMath(text){text=text.replace(/@@(\d+)@@/g,function(match,n){return math[n]});math=null;return text;}
+function RestartMJ(){pending=false;HUB.cancelTypeset=false;HUB.Queue(["Typeset",HUB,preview]);}
+function UpdateMJ(){if(!pending&&ready){pending=true;HUB.Cancel();HUB.Queue(RestartMJ);}}
+function prepareWmdForMathJax(editorObject,wmdId,delimiters){preview=document.getElementById("wmd-preview"+ wmdId);inline=delimiters[0][0];var converterObject=editorObject.getConverter();converterObject.hooks.chain("preConversion",removeMath);converterObject.hooks.chain("postConversion",replaceMath);editorObject.hooks.chain("onPreviewRefresh",UpdateMJ);}
+return{prepareWmdForMathJax:prepareWmdForMathJax}})();}
+(function(){var HUB=MathJax.Hub;if(!HUB.Cancel){HUB.cancelTypeset=false;var CANCELMESSAGE="MathJax Canceled";HUB.Register.StartupHook("HTML-CSS Jax Config",function(){var HTMLCSS=MathJax.OutputJax["HTML-CSS"],TRANSLATE=HTMLCSS.Translate;HTMLCSS.Augment({Translate:function(script,state){if(HUB.cancelTypeset||state.cancelled){throw Error(CANCELMESSAGE)}
+return TRANSLATE.call(HTMLCSS,script,state);}});});HUB.Register.StartupHook("SVG Jax Config",function(){var SVG=MathJax.OutputJax["SVG"],TRANSLATE=SVG.Translate;SVG.Augment({Translate:function(script,state){if(HUB.cancelTypeset||state.cancelled){throw Error(CANCELMESSAGE)}
+return TRANSLATE.call(SVG,script,state);}});});HUB.Register.StartupHook("TeX Jax Config",function(){var TEX=MathJax.InputJax.TeX,TRANSLATE=TEX.Translate;TEX.Augment({Translate:function(script,state){if(HUB.cancelTypeset||state.cancelled){throw Error(CANCELMESSAGE)}
+return TRANSLATE.call(TEX,script,state);}});});var PROCESSERROR=HUB.processError;HUB.processError=function(error,state,type){if(error.message!==CANCELMESSAGE){return PROCESSERROR.call(HUB,error,state,type)}
+MathJax.Message.Clear(0,0);state.jaxIDs=[];state.jax={};state.scripts=[];state.i=state.j=0;state.cancelled=true;return null;};HUB.Cancel=function(){this.cancelTypeset=true;};}})();

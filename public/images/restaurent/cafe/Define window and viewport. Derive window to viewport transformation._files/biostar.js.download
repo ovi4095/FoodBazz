@@ -1,0 +1,64 @@
+function getCookie(name){var cookieValue=null;if(document.cookie&&document.cookie!=''){var cookies=document.cookie.split(';');for(var i=0;i<cookies.length;i++){var cookie=jQuery.trim(cookies[i]);if(cookie.substring(0,name.length+ 1)==(name+'=')){cookieValue=decodeURIComponent(cookie.substring(name.length+ 1));break;}}}
+return cookieValue;}
+csrftoken=getCookie('csrftoken');function csrfSafeMethod(method){return(/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));}
+$.ajaxSetup({crossDomain:false,beforeSend:function(xhr,settings){if(!csrfSafeMethod(settings.type)){xhr.setRequestHeader("X-CSRFToken",csrftoken);}}});function moderate_post(elem){var post_id=elem.attr('data-value')
+var modpanel=$('#modpanel')
+if(modpanel.length>0){$('#modpanel').remove()}else{var page=$('<div id="modpanel"></div>').load("/local/moderate/post/"+ post_id+"/")
+elem.parent().parent().after(page)}}
+function moderate_user(elem){var user_id=elem.attr('data-value')
+var modpanel=$('#modpanel')
+if(modpanel.length>0){$('#modpanel').remove()}else{var page=$('<div id="modpanel"></div>').load("/local/moderate/user/"+ user_id+"/")
+elem.parent().parent().after(page)}}
+function add_comment(elem){$("#comment-row").remove();var post_id=elem.attr('data-value')
+var container=elem.parent().parent()
+var csrf_html=$('#csrf_token').find("input[name='csrfmiddlewaretoken']").parent().html()
+container.after('<div id="comment-row">\
+    <form id="comment-form" role="form" action="/p/new/comment/'+ post_id+'/" method="post">'+ csrf_html+'\
+        <div class="form-group">\
+        <div class="wmd-panel">\
+            <div id="wmd-button-bar-2"></div>\
+            <textarea class="wmd-input-2" id="wmd-input-2"  name="content" rows="3"></textarea></div> \
+        </div>\
+        <div><a class="btn btn-success" href=\'javascript:document.forms["comment-form"].submit()\'><i class="icon-comment"></i> Add comment</a>          \
+        <a class="btn btn-warning pull-right" onclick="javascript:obj=$(\'#comment-row\').remove();"><i class="icon-remove"></i> Cancel</a>   </div>       \
+    </form>            \
+    </div>')
+var converter1=Markdown.getSanitizingConverter();Markdown.Extra.init(converter1,{extensions:["tables"]});var editor1=new Markdown.Editor(converter1,'-2');var mjpd1=new MJPD();mjpd1.Editing.prepareWmdForMathJax(editor1,'-2',[["$","$"]]);editor1.run();}
+function mod_votecount(elem,k){count=parseInt(elem.siblings('.count').text())||0
+count+=k
+elem.siblings('.count').text(count)}
+function add_comment_anon(elem){container=elem.closest("div")
+elem.css("background-color","red");$("#comment-box").remove();container.append(''+'<div id="comment-box" class="alert alert-warning">Please <a class="alert-link" href="/accounts/login/">log in</a> to comment</div>')}
+VOTE="vote"
+function toggle_button(elem,vote_type){if(elem.hasClass('off')){elem.removeClass('off');change=1}else{elem.addClass('off');change=-1}
+mod_votecount(elem,change)}
+function pop_over(elem,msg,cls){var text='<div></div>'
+var tag=$(text).insertAfter(elem)
+tag.addClass('vote-popover alert '+ cls)
+tag.text(msg)
+tag.delay(1000).fadeOut(1000,function(){$(this).remove()});}
+function ajax_vote(elem,post_id,vote_type){toggle_button(elem,vote_type)
+$.ajax('/x/vote/',{type:'POST',dataType:'json',data:{post_id:post_id,vote_type:vote_type},success:function(data){if(data.status=='error'){pop_over(elem,data.msg,data.status)
+toggle_button(elem,vote_type)}else{}},error:function(){pop_over(elem,'Unable to submit vote!','error');toggle_button(elem,vote_type);}});}
+function title_format(row){link='<a href="'+ row.url+'"/>'+ row.text+'</a><div class="in">'+ row.context+' by <i>'+ row.author+'</i></div>';return link}
+$(document).ready(function(){var tooltip_options={};var wmd=$('.wmd-input')
+if(wmd.length){var converter=Markdown.getSanitizingConverter();Markdown.Extra.init(converter,{extensions:["tables"]});var editor=new Markdown.Editor(converter,'-customsuffix');var mjpd1=new MJPD();mjpd1.Editing.prepareWmdForMathJax(editor,'-customsuffix',[["$","$"]]);editor.run();}
+var searchform=$("#searchform")
+if(searchform.length>0){searchform.focus();searchform.select2({placeholder:"Live search: start typing...",minimumInputLength:3,ajax:{url:TITLE_SEARCH_URL,dataType:'json',data:function(term,page){return{q:term,page_limit:10};},results:function(data,page){console.log(data.items)
+console.log(page)
+return{results:data.items};}},formatResult:title_format,dropdownCssClass:"bigdrop",escapeMarkup:function(m){return m;}})
+searchform.on("change",function(e){window.location=e.val})}
+var tagval=$("#id_tag_val")
+if(tagval.length>0){tagval.removeClass("textinput textInput form-control")
+tagval.width("96%")
+tagval.select2({placeholder:'Start typing the tags..',multiple:true,initSelection:function(element,callback){values=element.val().split(',')
+var results=values.map(function(value,key){return{id:value,text:value};});callback(results)},createSearchChoice:function(term,data){if($(data).filter(function(){return this.text.localeCompare(term)===0;}).length===0){return{id:term,text:term};}},ajax:{url:'/local/search/tags/',dataType:'json',quietMillis:400,data:function(term,page){return{q:term};},results:function(data){var results=data.map(function(value,key){return{id:value,text:value};});return{results:results,};}}});}
+$('.tip').tooltip(tooltip_options)
+if(USER_ID){$('.add-comment').each(function(){$(this).click(function(){add_comment($(this));});});$('.mod-post').each(function(){$(this).click(function(){moderate_post($(this));});});$('.mod-user').each(function(){$(this).click(function(){moderate_user($(this));});});}else{$('.add-comment').each(function(){$(this).click(function(){add_comment_anon($(this));});});}
+$('.vote').each(function(){$($(this)).click(function(){var elem=$(this);var post_id=elem.parent().attr('data-post_id');var vote_type=elem.attr('data-type')
+ajax_vote(elem,post_id,vote_type);});});elems=[{"id":"#id_university","url":"/metadata/search/university/"},{"id":"#id_branch","url":"/metadata/search/branch/"},{"id":"#id_college","url":"/metadata/search/college/"}]
+$.each(elems,function(k,elem){var el=$(elem.id)
+if(el.length>0){el.removeClass("textinput textInput form-control")
+el.width("96%")
+el.select2({placeholder:'',multiple:false,initSelection:function(element,callback){value=element.val()
+callback({id:value,text:value})},createSearchChoice:function(term,data){if($(data).filter(function(){return this.text.localeCompare(term)===0;}).length===0){return{id:term,text:term};}},ajax:{url:elem.url,dataType:'json',quietMillis:400,data:function(term,page){return{q:term};},results:function(data){var results=data.map(function(value,key){return{id:value,text:value};});return{results:results,};}}});}})});
