@@ -10,22 +10,22 @@
 		          <li data-target="#carouselExampleCaptions" data-slide-to="2" ></li>
 		        </ol>
 		        <div class="carousel-inner">
-		        @foreach($homeimages as $hmimg)
+		        @foreach($homepages as $hmimg)
 		          <div class="carousel-item active">
 		              <img class="d-block w-100" src="{{URL::to($hmimg->homeslide1_img)}}" alt="First slide" data-holder-rendered="true">
 		                <div class="carousel-caption d-none d-md-block">
 		                  <h1  class="animated slideInUp position" >Welcome To FoodBazz</h1>
 		                    <p class="animated lightSpeedIn position2">
-		                            complement
+
 		                    </p>
 		                </div>
 		          </div>
 		          <div class="carousel-item">
 		            <img class="d-block w-100" src="{{URL::to($hmimg->homeslide2_img)}}" alt="Second slide" data-holder-rendered="true">
 		              <div class="carousel-caption d-none d-md-block">
-		                   <h1  class="animated zoomIn position" style="margin-left: 50px;">FoodBazz will give you</h1>
+		                   <h1  class="animated zoomIn position">FoodBazz will give you</h1>
 		                      <p class="animated zoomInUp position3">
-		                        dkkkd
+
 		                      </p>
 		              </div>
 		          </div>
@@ -34,7 +34,7 @@
 		              <div class="carousel-caption d-none d-md-block">
 		                <h1  class="animated bounceInDown position4" >FoodBazz Is a tool</h1>
 		                    <p class="animated fadeInDown position2">
-		                      dkkd
+
 		                    </p>
 		            </div>
 		          </div>
@@ -70,7 +70,7 @@
 	<section id="card" class="cardContainar">
 		<h1 class="cardh animated flipInX" >Check out! What we have for you.</h1>
 		<div class=" cont" style="margin-top: 150px;" >
-		@foreach($homeimages as $hmimg)
+		@foreach($homepages as $hmimg)
 			<div class=" cont dst" >
 				<div class="column col-sm-12 card2">
 				    <div class="demo-title">restaurant</div>
@@ -84,10 +84,10 @@
 						    <div class="post-content">
 						        <div class="category">Photos</div>
 						        	<h1 class="title">Most popular food restaurants are in Here</h1>
-						        		<h2 class="sub_title">Here you can find many popular and traditional fool restaurant</h2>
+						        		<h2 class="sub_title"></h2>
 									        <p class="description">
 									        </p>
-						        <a type="button" class="btn btnclr" href="{{URL::to('restaurent_list')}}">learn more</a>
+						        <a type="button" class="btn btn-danger" href="{{URL::to('restaurent_list')}}">learn more</a>
 						        <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-"></i></span><span class="comments"><i class="fa fa-comments"></i><a href="#"></a></span>
 						        </div>
 						    </div>
@@ -103,15 +103,15 @@
 						        <div class="date">
 							        <div class="day">23</div>
 							        <div class="month">Nov</div>
-						      	</div><img src="{{URL::to($hmimg->rest_img)}}"/>
+						      	</div><img src="{{URL::to($hmimg->offer_img)}}"/>
 					        </div>
 						    <div class="post-content">
 						        <div class="category">Photos</div>
-						        	<h1 class="title">Most popular food restaurants are in Here</h1>
-						        		<h2 class="sub_title">Here you can find many popular and traditional fool restaurant</h2>
+						        	<h1 class="title">See whats new for you</h1>
+						        		<h2 class="sub_title"></h2>
 									        <p class="description">
 									        </p>
-						        <a type="button" class="btn btnclr" href="{{URL::to('restaurent_list')}}">learn more</a>
+						        <a type="button" class="btn btn-danger" href="{{URL::to('offer-list')}}">learn more</a>
 						        <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-"></i></span><span class="comments"><i class="fa fa-comments"></i><a href="#"></a></span>
 						        </div>
 						    </div>
@@ -128,15 +128,15 @@
 						        <div class="date">
 							        <div class="day">23</div>
 							        <div class="month">Nov</div>
-						      	</div><img src="{{URL::to($hmimg->rest_img)}}"/>
+						      	</div><img src="{{URL::to($hmimg->review_img)}}"/>
 					        </div>
 						    <div class="post-content">
 						        <div class="category">Photos</div>
-						        	<h1 class="title">Most popular food restaurants are in Here</h1>
-						        		<h2 class="sub_title">Here you can find many popular and traditional fool restaurant</h2>
+						        	<h1 class="title">Post what you thing about foods you like</h1>
+						        		<h2 class="sub_title"></h2>
 									        <p class="description">
 									        </p>
-						        <a type="button" class="btn btnclr" href="{{URL::to('restaurent_list')}}">learn more</a>
+						        <a type="button" class="btn  btn-danger" href="{{URL::to('restaurent_list')}}">learn more</a>
 						        <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-"></i></span><span class="comments"><i class="fa fa-comments"></i><a href="#"></a></span>
 						        </div>
 						    </div>

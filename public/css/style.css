@@ -104,7 +104,7 @@ body {
   margin: 0;
   padding: 0 0 10px;
   color: black;
-  font-size: 26pxblack
+  font-size: 26px;
   font-weight: 700;
 }
 .post-module .post-content .sub_title {
@@ -441,7 +441,7 @@ body{
     -webkit-flex: 0 0 auto;
 }
 
-//imageGallery
+/*imageGallery
 h1{
     text-align: center;
     color: forestgreen;
@@ -461,5 +461,4 @@ h1{
     filter: grayscale(0);
     transform: scale(1.1);
 
-}
-////////////////////
+}*/

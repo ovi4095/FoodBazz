@@ -7,38 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class SideController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function home()
     {
-        $homeimages= DB::table('homeimages')->get();
-        return view('fornt.homepage',compact('homeimages'));
+    $homepages= DB::table('homepages')->get();
+    return view('fornt.homepage',compact('homepages'));
     }
     public function Bindex()
     {
         $homeimages= DB::table('homeimages')->get();
         return view('fornt.banglahomepage')->with('homeimages',$homeimages);
-    }
-    public function RestaoList()
-
-    {
-        $restaurents= DB::table('restaurents')->get();
-
-        /*echo "<pre>";
-        print_r($restaurents);
-        exit;*/
-
-        return view('fornt.restaurent')->with('restaurents',$restaurents );
-    }
-    public function RestInfo(){
-        $restinfos= DB::table('restinfos')->get();
-        return view('fornt.restinfo')->with('restinfos',$restinfos);
-    }
-    public function RestInfo2(){
-        return view('fornt.restinfo2');
     }
     public function ImageGallery(){
         return view('fornt.imagegallery');
@@ -46,6 +23,10 @@ class SideController extends Controller
     public function Map()
     {
         return view('fornt.map');
+    }
+    public function adminlogin()
+    {
+        return view('admin.login.login');
     }
 
     /**
