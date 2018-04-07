@@ -44,7 +44,7 @@
                 </form>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <button type="button" class="btn btn-outline-secondary nav-link dropdown-toggle  fa fa-user fa-fw" href="#" id="navbardrop" data-toggle="dropdown" style="margin-left: 15px; color: white; ">{{Auth::user()->name}}
+                        <button type="button" class="btn btn-outline-secondary nav-link dropdown-toggle  fa fa-user fa-fw" href="#" id="navbardrop" data-toggle="dropdown" style="margin-left: 15px; color: white; ">user
                         </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{url('/admin-home')}}">Home</a>

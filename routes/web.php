@@ -38,6 +38,17 @@ route::get(
     'admin-login','SideController@adminlogin'
 );
 
+route::post(
+    '/order-item','OrderController@addOrder'
+);
+route::get(
+    '/show-order','OrderController@showOrder'
+);
+route::get(
+    '/delete-order/{id}','OrderController@deleteOrder'
+);
+
+
 Auth::routes();
 
 Route::get('/admin-home', 'HomeController@index')->name('home');

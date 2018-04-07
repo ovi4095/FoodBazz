@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2018 at 02:48 PM
+-- Generation Time: Apr 07, 2018 at 04:32 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -104,9 +104,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2018_04_01_201705_create_homepages_table', 6),
 (12, '2018_04_01_235133_create_homepages_table', 7),
 (13, '2018_04_02_134449_create_restaurants_table', 8),
-(14, '2018_04_02_182037_create_offers_table', 9),
-(15, '2018_04_06_085043_create_restinfos_table', 10),
-(16, '2018_04_06_101638_create_review_imgs_table', 11);
+(14, '2018_04_02_182037_create_offers_table', 9);
 
 -- --------------------------------------------------------
 
@@ -122,7 +120,6 @@ CREATE TABLE `offers` (
   `restau_detail` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `offer_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `offer_link` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `publication_status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -132,9 +129,9 @@ CREATE TABLE `offers` (
 -- Dumping data for table `offers`
 --
 
-INSERT INTO `offers` (`id`, `offer_name`, `offer_id`, `restaurant_name`, `restau_detail`, `price`, `offer_img`, `offer_link`, `publication_status`, `created_at`, `updated_at`) VALUES
-(5, 'Pizza', 1, 'Pinewood - Cafe n\' Restaurant', 'Testy pizza', '800', 'offer-image/op1.jpg', 'restaurent_info', 1, '2018-04-05 04:41:23', '2018-04-05 05:27:48'),
-(7, 'Burger', 2, 'Cafe Darbar', 'Extra Chicken meet with Cheese and Barbecue sauce', '350', 'offer-image/burger.jpg', 'restaurent_info', 1, '2018-04-05 09:20:24', '2018-04-05 09:20:24');
+INSERT INTO `offers` (`id`, `offer_name`, `offer_id`, `restaurant_name`, `restau_detail`, `price`, `offer_img`, `publication_status`, `created_at`, `updated_at`) VALUES
+(5, 'Pizza', 1, 'Pinewood - Cafe n\' Restaurant', 'Testy pizza', '800', 'offer-image/op1.jpg', 1, '2018-04-05 04:41:23', '2018-04-05 05:27:48'),
+(6, 'Burger', 2, 'Pinewood - Cafe n\' Restaurant', 'Extra chicken with Cheese with Mao', '350', 'offer-image/burger.jpg', 1, '2018-04-07 02:22:10', '2018-04-07 02:22:10');
 
 -- --------------------------------------------------------
 
@@ -161,6 +158,7 @@ CREATE TABLE `restaurants` (
   `restau_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `restau_detail` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `rating` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rest_link` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `publication_status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -170,8 +168,9 @@ CREATE TABLE `restaurants` (
 -- Dumping data for table `restaurants`
 --
 
-INSERT INTO `restaurants` (`id`, `restau_id`, `restau_img`, `restau_name`, `restau_detail`, `rating`, `publication_status`, `created_at`, `updated_at`) VALUES
-(4, 3, 'rest-image/p1.jpg', 'Pinewood - Cafe n\' Restaurant', 'Family style restaurant in Dhaka, Bangladesh', '4.5', 1, '2018-04-02 13:53:54', '2018-04-06 06:24:49');
+INSERT INTO `restaurants` (`id`, `restau_id`, `restau_img`, `restau_name`, `restau_detail`, `rating`, `rest_link`, `publication_status`, `created_at`, `updated_at`) VALUES
+(4, 1, 'rest-image/p1.jpg', 'Pinewood - Cafe n\' Restaurant', 'Family style restaurant in Dhaka, Bangladesh', '4.5', 'restaurent_info', 1, '2018-04-02 13:53:54', '2018-04-06 07:33:44'),
+(7, 6, 'rest-image/cc1.jpg', 'Cafe Darbar', 'Awesome place to eat and engoy', '4.7', 'restaurent_info', 1, '2018-04-06 08:35:35', '2018-04-06 08:35:35');
 
 -- --------------------------------------------------------
 
@@ -181,15 +180,20 @@ INSERT INTO `restaurants` (`id`, `restau_id`, `restau_img`, `restau_name`, `rest
 
 CREATE TABLE `restinfos` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slide1_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slide2_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slide3_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `manu_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `map_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `restaurent_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slide1_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slide2_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slide3_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `manu_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `review1_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `review2_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `review3_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `review4_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `map_img` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `map_url` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contact_number` int(11) NOT NULL,
-  `fb_link` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_number` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fb_link` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `publication_status` tinyint(4) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -199,34 +203,9 @@ CREATE TABLE `restinfos` (
 -- Dumping data for table `restinfos`
 --
 
-INSERT INTO `restinfos` (`id`, `slide1_img`, `slide2_img`, `slide3_img`, `manu_img`, `address`, `map_img`, `map_url`, `contact_number`, `fb_link`, `publication_status`, `created_at`, `updated_at`) VALUES
-(3, 'infopage-image/o1.jpg', 'infopage-image/o2.jpg', 'infopage-image/o1.jpg', 'infopage-image/o3.jpg', 'df', 'infopage-image/pic2.jpg', 'sdf', 1884394257, 'fsdf', 1, '2018-04-06 06:09:28', '2018-04-06 06:09:28');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `review_imgs`
---
-
-CREATE TABLE `review_imgs` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `info_id` int(11) NOT NULL,
-  `review_img` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `review_imgs`
---
-
-INSERT INTO `review_imgs` (`id`, `info_id`, `review_img`, `created_at`, `updated_at`) VALUES
-(1, 3, 'review-image/pic3.jpg', '2018-04-06 06:09:28', '2018-04-06 06:09:28'),
-(2, 3, 'review-image/pic3-small.jpg', '2018-04-06 06:09:28', '2018-04-06 06:09:28'),
-(3, 3, 'review-image/pic4.jpg', '2018-04-06 06:09:28', '2018-04-06 06:09:28'),
-(4, 3, 'review-image/pic6-small.jpg', '2018-04-06 06:09:28', '2018-04-06 06:09:28'),
-(5, 3, 'review-image/pic7.jpg', '2018-04-06 06:09:28', '2018-04-06 06:09:28'),
-(6, 3, 'review-image/pic7-small.jpg', '2018-04-06 06:09:28', '2018-04-06 06:09:28');
+INSERT INTO `restinfos` (`id`, `restaurent_name`, `slide1_img`, `slide2_img`, `slide3_img`, `manu_img`, `review1_img`, `review2_img`, `review3_img`, `review4_img`, `address`, `map_img`, `map_url`, `contact_number`, `fb_link`, `publication_status`, `created_at`, `updated_at`) VALUES
+(1, 'Pinewood - Cafe n\' Restaurant', 'images/restaurent/pws1.jpg', 'images/restaurent/pws2.jpg', 'images/restaurent/pws3.jpg', 'images/restaurent/manu.jpg', 'images/restaurent/rs1.png', 'images/restaurent/rs2.png', 'images/restaurent/rs3.png', 'images/restaurent/rs5.png', 'House 19, Road 12 (New), Dhanmondi, Dhaka 1209', 'images/pinwoodmap.png', 'https://www.google.com/maps/place/23%C2%B045\'08.8%22N+90%C2%B022\'35.3%22E/@23.7525094,90.3753344,18z/data=!4m5!3m4!1s0x0:0x0!8m2!3d23.7524431!4d90.3764609', '+8801914426939', 'https://www.facebook.com/pinewoodcafebd/', 0, '2018-03-21 18:00:00', '2018-03-21 18:00:00'),
+(6, 'Cafe Darbar', 'infopage-image/cs1.jpg', 'infopage-image/cs2.jpg', 'infopage-image/cs3.jpg', 'infopage-image/menu.jpg', 'infopage-image/r2.PNG', 'infopage-image/r4.PNG', 'infopage-image/r5.PNG', 'infopage-image/rs7.PNG', 'House # 75, Ground Floor, Rd No 5/A, Dhaka 1209', 'infopage-image/map11.JPG', 'https://www.google.com/maps/place/Cafe+Darbar/@23.741808,90.3739667,15z/data=!4m5!3m4!1s0x0:0x98c0b3f4e8236075!8m2!3d23.741808!4d90.3739667', '01684545524', 'https://www.facebook.com/cafedarbar/?nr', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -249,7 +228,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ovi', 'alaminovi11@gmail.com', '$2y$10$zU18ZDQrIHxOE7wG0DFBL.u162VW1pY8cbRUngt0kT2QE8D2ISski', 'OyLI5PfsXlJoDxXFFWSF4eUNpSTd80iwgav4ihTitnKKtCuz5oEiyFiioUoR', '2018-03-28 12:11:21', '2018-03-28 12:11:21');
+(1, 'ovi', 'alaminovi11@gmail.com', '$2y$10$zU18ZDQrIHxOE7wG0DFBL.u162VW1pY8cbRUngt0kT2QE8D2ISski', 'vfijsDqJUYctjNHYgfiaVZxDNbQGWWdd0TkB2L27EamWbxEMKgT3qa2UUe3e', '2018-03-28 12:11:21', '2018-03-28 12:11:21');
 
 --
 -- Indexes for dumped tables
@@ -299,12 +278,6 @@ ALTER TABLE `restinfos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `review_imgs`
---
-ALTER TABLE `review_imgs`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -331,30 +304,24 @@ ALTER TABLE `homepages`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `offers`
 --
 ALTER TABLE `offers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `restaurants`
 --
 ALTER TABLE `restaurants`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `restinfos`
 --
 ALTER TABLE `restinfos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `review_imgs`
---
-ALTER TABLE `review_imgs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --

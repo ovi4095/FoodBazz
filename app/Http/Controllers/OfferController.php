@@ -42,7 +42,6 @@ class OfferController extends Controller
         $offer->restau_detail= $request->restau_detail;
         $offer->offer_img=$imageUrl;
         $offer->price= $request->price;
-        $offer->offer_link= $request->offer_link;
         $offer->publication_status= $request->publication_status;
         $offer->save();
         return redirect('/offer/add-offer')->with('message','offer added successfully Uploded');

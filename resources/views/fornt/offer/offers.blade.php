@@ -48,7 +48,12 @@
                             <p class="card-text">Tk {{$offer->price}}</p>
                         </div>
                         <div class="card-footer">
-                            <a type="button" class="btn btn-danger" href="{{url($offer->offer_link)}}">Order</a>
+                            <form action="{{ url('/order-item') }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="submit" class="btn btn-danger col-sm-4" value="Order" title="" />
+                                <input type="text" name="offer_id" hidden value="{{$offer->id}}"/>
+                                <input type="number" class=" col-sm-3 " name="order_quantity" value="1" min="1"/>
+                            </form>
                         </div>
                     </div>
                 </div>

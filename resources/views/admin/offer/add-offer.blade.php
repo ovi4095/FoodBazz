@@ -53,12 +53,7 @@
                             <input type="file" class="btn btn-danger" name="offer_img" accept="image/*">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm=3">Link</label>
-                        <div class="col-sm-9">
-                            <input class="form-control" name="offer_link"></input>
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label class="col-sm=3">Publiceation Status</label>
                         <div class="col-sm-9">
