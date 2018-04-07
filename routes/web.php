@@ -47,6 +47,12 @@ route::get(
 route::get(
     '/delete-order/{id}','OrderController@deleteOrder'
 );
+route::get(
+    '/post-review','ReviewController@addReview'
+);
+route::post(
+    '/post-new-review','ReviewController@ReviewController'
+);
 
 
 Auth::routes();
@@ -86,3 +92,20 @@ Route::get('/offer/manage-offer', 'OfferController@manageOffer');
 Route::get('/offer/delete-offer/{id}', 'OfferController@deleteOffer');
 Route::get('/offer/unpublished-offer/{id}', 'OfferController@unpublishedOffer');
 Route::get('/offer/published-offer/{id}', 'OfferController@publishedOffer');
+//================================================================================
+Route::get('/rewiewpost/manage-reviewpost', 'ReviewController@manageReview');
+Route::get('/rewiewpost/delete-reviewpost/{id}', 'ReviewController@deleteReview');
+
+
+
+
+
+
+
+
+
+
+
+
+
+

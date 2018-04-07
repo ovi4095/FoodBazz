@@ -136,7 +136,7 @@
 						        		<h2 class="sub_title"></h2>
 									        <p class="description">
 									        </p>
-						        <a type="button" class="btn  btn-danger" href="{{URL::to('restaurent_list')}}">learn more</a>
+						        <a type="button" class="btn  btn-danger" href="{{url('/post-review/')}}">learn more</a>
 						        <div class="post-meta"><span class="timestamp"><i class="fa fa-clock-"></i></span><span class="comments"><i class="fa fa-comments"></i><a href="#"></a></span>
 						        </div>
 						    </div>
