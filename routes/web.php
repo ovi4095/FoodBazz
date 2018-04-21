@@ -51,9 +51,17 @@ route::get(
     '/post-review','ReviewController@addReview'
 );
 route::post(
-    '/post-new-review','ReviewController@ReviewController'
+    '/post-new-review','ReviewController@saveReview'
 );
-
+route::get(
+    '/checkout','CheckoutController@index'
+);
+route::get(
+    '/shipping-info','CheckoutController@showShippingInfo'
+);
+route::post(
+    '/new-customer','CheckoutController@saveCustomerInfo'
+);
 
 Auth::routes();
 

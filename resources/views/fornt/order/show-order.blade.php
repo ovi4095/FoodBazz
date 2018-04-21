@@ -63,6 +63,16 @@
                        </tr>
 
                    </table>
+                   <table class="table hover table-bordered">
+                       <tr>
+                           <td>
+                               <a href="{{'offer-list'}}" class="btn btn-danger">Order More</a>
+                           </td>
+                           <td>
+                               <a href="{{'/checkout'}}" class="btn btn-danger">Check Out</a>
+                           </td>
+                       </tr>
+                   </table>
 
                </div>
 
