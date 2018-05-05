@@ -62,6 +62,25 @@ route::get(
 route::post(
     '/new-customer','CheckoutController@saveCustomerInfo'
 );
+route::post(
+    '/customer-login','CheckoutController@customerLoginCheck'
+);
+route::get(
+    '/customer-logout','CheckoutController@customerLogout'
+);
+route::get(
+    '/register-now','SideController@registerNow'
+);
+route::get(
+    '/login-now','SideController@loginNow'
+);
+route::post(
+    '/new-customerAlter','SideController@saveCustomerInfo'
+);
+route::post(
+    '/customer-loginAlter','SideController@customerLoginCheck'
+);
+
 
 Auth::routes();
 

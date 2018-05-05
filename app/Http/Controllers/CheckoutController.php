@@ -59,4 +59,25 @@ class CheckoutController extends Controller
         return view('fornt.checkout.shipping-info');
     }
 
+    public function customerLogout(){
+        Session::forget('cutomerId');
+        Session::forget('cutomerName');
+
+        return redirect('/welcome');
+    }
+
+    public function customerLoginCheck(Request $request){
+        $customer = Customer::where('email', $request->email)->first();
+        if ($customer){
+        if (password_verify($request->password,$customer->password)){
+            Session::put('cutomerId', $customer->id);
+            Session::put('cutomerName', $customer->first_name.' '.$customer->last_name);
+            return redirect('/welcome');
+        } else {
+            return redirect('/welcome')->with('message','Invalid Password');
+        }
+        } else{
+            return redirect('/welcome')->with('message','Invalid Email');
+        }
+    }
 }

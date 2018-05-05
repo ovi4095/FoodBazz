@@ -28,22 +28,7 @@
                     </div>
                 </li>
             </ul>
-            <div class="container-fluid justify-content-end row" >
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <button type="button" class="btn btn-outline-secondary nav-link dropdown-toggle  fa fa-user fa-fw" href="#" id="navbardrop" data-toggle="dropdown" style="margin-left: 15px; color: white; ">User
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{url('/admin-home')}}">Home</a>
-                            <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-btn').submit();" >Logout</a>
-                            <form action="{{ route('logout') }}" method="POST" id="logout-btn">
-                                {{ csrf_field() }}
-                            </form>
-                        </div>
-                    </li>
 
-                </ul>
-            </div>
-        </div>
+
     </nav>
 </header>

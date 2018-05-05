@@ -37,25 +37,27 @@
                 </li>
             </ul>
             <div class="container-fluid justify-content-end row" >
-                <a href="#login" class="btn btn-outline-primary scroll col-sm-2" style="margin-right: 50px; color: white;" >Sign in</a>
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" href="#" style="color: white;">Search</button>
                 </form>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <button type="button" class="btn btn-outline-secondary nav-link dropdown-toggle  fa fa-user fa-fw" href="#" id="navbardrop" data-toggle="dropdown" style="margin-left: 15px; color: white; ">user
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{url('/admin-home')}}">Home</a>
-                            <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-btn').submit();" >Logout</a>
-                            <form action="{{ route('logout') }}" method="POST" id="logout-btn">
-                                {{ csrf_field() }}
-                            </form>
-                        </div>
-                    </li>
+                @if(Session::get('cutomerId'))
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
 
-                </ul>
+                            <button type="button" class="btn btn-outline-secondary nav-link dropdown-toggle  fa fa-user fa-fw" href="#" id="navbardrop" data-toggle="dropdown" style="margin-left: 15px; color: white; ">Logout</button>
+
+                                <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{url('/welcome')}}">Home</a>
+                                <a class="dropdown-item" href="{{url('/customer-logout')}}">Logout</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                @else
+                <a href="#login" class="btn btn-outline-primary scroll col-sm-1" style=" margin-left: 10px; width: 50px; color: white;" >Sign in</a>
+                @endif
+
             </div>
         </div>
     </nav>

@@ -17,13 +17,14 @@ class RestaurantController extends Controller
                     ->join('restinfos', 'restaurants.restau_id', '=', 'restinfos.id')
                     ->select('restaurants.id','restaurants.restau_id','restaurants.restau_img','restaurants.restau_name','restaurants.restau_detail', 'restaurants.rating','restaurants.publication_status','restinfos.id')
                     ->get();
+        $homepages= DB::table('homepages')->get();
+        return view('fornt.restaurantList.restaurent',compact('homepages','restaurants'));
 
-
-        return view('fornt.restaurantList.restaurent')->with('restaurants',$restaurants );
     }
     public function RestInfo($id){
         $restinfos= DB::table('restinfos')->where('id',$id)->get();
-        return view('fornt.restaurantinfo.restinfo')->with('restinfos',$restinfos);
+        $homepages= DB::table('homepages')->get();
+        return view('fornt.restaurantinfo.restinfo',compact('homepages','restinfos'));
     }
 
     public function addRestaurant(){

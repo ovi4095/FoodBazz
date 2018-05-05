@@ -13,9 +13,11 @@ class ReviewController extends Controller
     public function addReview(){
         $publishedRestaurants = Restaurant::where('publication_status', 1)->get();
         $reviewposts= DB::table('reviewposts')->get();
+        $customers= DB::table('customers')->get();
         return view('fornt.review.review', [
             'publishedRestaurents'=>$publishedRestaurants,
-            'reviewposts'=>$reviewposts
+            'reviewposts'=>$reviewposts,
+            'customers'=>$customers
 
         ]);
 

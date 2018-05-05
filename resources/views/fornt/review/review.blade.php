@@ -65,20 +65,22 @@
                     </li>
                 </ul>
                 <div class="container-fluid justify-content-end row" >
+                    @if(Session::get('cutomerId'))
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <button type="button" class="btn btn-outline-secondary nav-link dropdown-toggle  fa fa-user fa-fw" href="#" id="navbardrop" data-toggle="dropdown" style="margin-left: 15px; color: white; ">User
-                            </button>
+                            @foreach($customers as $cust)
+                                <button type="button" class="btn btn-outline-secondary nav-link dropdown-toggle  fa fa-user fa-fw" href="#" id="navbardrop" data-toggle="dropdown" style="margin-left: 15px; color: white; ">{{$cust->first_name}}</button>
+                            @endforeach
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{{url('/admin-home')}}">Home</a>
-                                <a class="dropdown-item" href="" onclick="event.preventDefault(); document.getElementById('logout-btn').submit();" >Logout</a>
-                                <form action="{{ route('logout') }}" method="POST" id="logout-btn">
-                                    {{ csrf_field() }}
-                                </form>
+                                <a class="dropdown-item" href="{{url('/welcome')}}">Home</a>
+                                <a class="dropdown-item" href="{{url('/customer-logout')}}">Logout</a>
                             </div>
                         </li>
 
                     </ul>
+                    @else
+                        <a href="#login" class="btn btn-outline-primary scroll col-sm-1" style=" margin-left: 10px; width: 50px; color: white;" >Sign in</a>
+                    @endif
                 </div>
             </div>
         </nav>
